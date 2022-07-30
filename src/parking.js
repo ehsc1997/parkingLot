@@ -12,16 +12,51 @@ class ParkingLot {
         }
 
         for (let i = 0; i <= this.slots.length; i++) {
-            const slot = this.slots[i]
+            const slot = this.slots[i];
 
             if (slot === null) {
-                this.slots[i] = carId
+                this.slots[i] = carId;
                 return true;
             }
         }
     }
 
-    // remove (carId) {
-    //     return false
-    // }
+    remove (carId) {
+        console.log(`Leaving car: ${carId}`);
+        if (this.slots.every((slot) != carId)) {
+            return false;
+        }
+
+        for (let i = 0; i < this.slots.length; i++) {
+            slot = this.slots[i];
+
+            if (slot == carId) {
+                this.slots[i] = null;
+                return true;
+            }
+        }
+    }
+
+    getSlots() {
+        console.log(`Parking slots: ${this.slots}`);
+        return this.slots;
+    }
+
+    getSize() {
+        console.log(`Parking lot size: ${this.slots.length}`);
+        return this.slots.length;
+    }
+
+    getAvailable() {
+        const available = this.slots.filter((s) => s === null).length;
+        console.log(`Parking spaces available: ${available}`);
+        return available;
+    }
+
+    isFull() {
+        console.log(`Parking lot is full: ${this.getAvailable === 0}`);
+        return this.getAvailable === 0;        
+    }
 }
+
+export default ParkingLot;
